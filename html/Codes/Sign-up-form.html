@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign-up.form</title>
+    <style>
+        textarea {
+            width: 100%;
+            border-radius: 5px;
+            padding: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            font-size: 16px;
+            resize: none;
+        }
+
+        textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .welcome-text {
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 8px white, 0 0 16px purple;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding-top: 50px;
+            background: linear-gradient(135deg, black, purple);
+        }
+
+        .form-container {
+            width: 400px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            font-family: Arial, sans-serif;
+            backdrop-filter: blur(8px);
+            color: white;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        input[type="password"] {
+            width: 100%;
+            border-radius: 5px;
+            padding: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        input::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+        }
+
+        select {
+            width: 100%;
+            border-radius: 5px;
+            padding: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        input[type="submit"] {
+            font-family: 'Poppins', sans-serif; /* modern round edge font */
+            font-size: 16px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        #result {
+            margin-top: 20px;
+            white-space: pre-line;
+            color: white;
+            width: 400px;
+            text-align: left;
+            background-color: rgba(0, 0, 0, 0.4);
+            padding: 15px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="welcome-text">welcome</h1>
+
+    <div class="form-container">
+        <form id="myForm"><br>
+            <textarea name="name" placeholder="Name" rows="1" style="resize: none;"></textarea><br>
+            <input type="password" name="password" placeholder="Password"><br><br>
+
+            <label for="sex">Sex:</label>
+            <input type="radio" name="sex" id="male" value="male">
+            <label for="male">Male</label>
+            <input type="radio" name="sex" id="female" value="female">
+            <label for="female">Female</label><br><br>
+
+            <label for="country">Country:</label>
+            <select name="country" id="country">
+                <option>Select an option:</option>
+                <option value="philippines">Philippines</option>
+                <option value="cambodia">Cambodia</option>
+                <option value="indonesia">Indonesia</option>
+                <option value="singapore">Singapore</option>
+                <option value="thailand">Thailand</option>
+                <option value="malaysia">Malaysia</option>
+            </select><br><br>
+
+            <textarea name="message" placeholder="Message" cols="30" rows="4"></textarea><br><br>
+
+                <input type="submit" value="Submit">
+        </form><br><br>
+
+    <div id="result"></div>
+    </div>
+
+    <script>
+        const form = document.getElementById('myForm');
+        const resultDiv = document.getElementById('result');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = form.name.value.trim();
+            const password = form.password.value.trim();
+            const sex = form.querySelector('input[name="sex"]:checked')?.value || 'Not selected';
+            const country = form.country.value;
+            const message = form.message.value.trim();
+
+            resultDiv.innerText = 
+                `Name: ${name}
+                Password: ${password}
+                Sex: ${sex}
+                Country: ${country}
+                Message: ${message}`;
+        });
+    </script>
+</body>
+</html>
